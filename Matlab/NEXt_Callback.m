@@ -1,5 +1,5 @@
-function NEXt_Callback(varargin)
-% следующий прибор
+п»їfunction NEXt_Callback(varargin)
+% СЃР»РµРґСѓСЋС‰РёР№ РїСЂРёР±РѕСЂ
 
 global EXIt vid...
        BEGin  NEXt PANel  IMAge text1_1 PROv PRInt_Er VISion...
@@ -12,7 +12,7 @@ global EXIt vid...
 
 
 set(text1_1,'Visible','on')
-set(text1_1,'String','Подключите разъём, вставте прибор в гнездо и нажмите кнопку!');
+set(text1_1,'String','РџРѕРґРєР»СЋС‡РёС‚Рµ СЂР°Р·СЉС‘Рј, РІСЃС‚Р°РІС‚Рµ РїСЂРёР±РѕСЂ РІ РіРЅРµР·РґРѕ Рё РЅР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ!');
 set(axes1f1, 'Visible','off');
 delete (axes1f1);
 set(BEGin,'visible','on'); 

@@ -1,5 +1,5 @@
-function BEGin_Callback(varargin)
-% Кнопка проверки KD8071_4
+п»їfunction BEGin_Callback(varargin)
+% РљРЅРѕРїРєР° РїСЂРѕРІРµСЂРєРё KD8071_4
 
 global figure1  EXIt...
     BEGin  NEXt PANel  IMAge PROv PRInt_Er  axes1f1 VISion VISion2...
@@ -20,11 +20,11 @@ height=SCRsize(4)-19;
 
 
 load ('areaS');
-y=[uint8('@') 0 0 ];%запрос контроллера
-x1=[uint8('@') 0 0 0 0 0];%ответ контроллера
+y=[uint8('@') 0 0 ];%Р·Р°РїСЂРѕСЃ РєРѕРЅС‚СЂРѕР»Р»РµСЂР°
+x1=[uint8('@') 0 0 0 0 0];%РѕС‚РІРµС‚ РєРѕРЅС‚СЂРѕР»Р»РµСЂР°
 
 areaS=areaS1;
-n=NumShkal; %Кол-во циферблатов
+n=NumShkal; %РљРѕР»-РІРѕ С†РёС„РµСЂР±Р»Р°С‚РѕРІ
 
 Popravka=zeros(n,4);
 Prov_1=1;
@@ -32,7 +32,7 @@ Prov_1=1;
 try
     %
     SOOB2=3;
-   % Поправки
+   % РџРѕРїСЂР°РІРєРё
     F=fopen('infopop8071.m','r');
     Popravka=fscanf(F,'%g',[4 n]);
     Prov_1=fscanf(F,'%g',1);
@@ -47,7 +47,7 @@ try
     set(NEXt        ,'Visible','off');
     set(VISion      ,'Visible','off');
     set(VISion2      ,'Visible','off');
-    prompt={'Введите № прибора'};
+    prompt={'Р’РІРµРґРёС‚Рµ в„– РїСЂРёР±РѕСЂР°'};
     N_d= my_inputdlg(prompt);
     if isequal (N_d,1)
         N_device =N_d{1,1};
@@ -63,7 +63,7 @@ try
     figure_vid = figure...
         ('Color'           , [0.8 0.8 0.8],...
         'NumberTitle'     ,'off', ...
-        'Name'            ,'Видео',...
+        'Name'            ,'Р’РёРґРµРѕ',...
         'Tag'             ,'figure_vid',...
         'PaperSize'       ,[20.98 29.68],...
         'PaperType'       ,'a4letter',...
@@ -78,14 +78,14 @@ try
     set(findobj('tag', 'VISion2'),'Visible','off');
     set(PANel                 ,'Visible','on');
     set(text3,     'HorizontalAlignment' ,'center',...
-        'String'              ,'ВКЛЮЧЕНИЕ','Foregroundcolor' ,'k',...
+        'String'              ,'Р’РљР›Р®Р§Р•РќРР•','Foregroundcolor' ,'k',...
         'Visible'             ,'on');
     
     set(text4,     'HorizontalAlignment' ,'center',...
         'String'              ,'|',...
         'Visible'             ,'on');
     SOOB2=6;
-    x=[uint8('@') 1 2 1 0];%выключение прибора;Набор1
+    x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ1
     fwrite(sobj,x);
     pause(0.2)
     fwrite(sobj,x);
@@ -108,10 +108,10 @@ try
     
     %
     % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % %КАЛИБРОВКА
+    % %РљРђР›РР‘Р РћР’РљРђ
     % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %
-    %   % ошибка калибровки
+    %   % РѕС€РёР±РєР° РєР°Р»РёР±СЂРѕРІРєРё
     %
     % SOOB2=6;
     
@@ -120,15 +120,15 @@ try
     Centrs_metki=ones(4,2,n);
     CentrsEnd_strl=ones(5,2,n);
     
-    set(text3, 'String' ,'КАЛИБРОВКА','Visible'             ,'on');
+    set(text3, 'String' ,'РљРђР›РР‘Р РћР’РљРђ','Visible'             ,'on');
     SOOB2=6;
-    x=[uint8('@') 1 2 1 32];%включение прибора;Набор1
+    x=[uint8('@') 1 2 1 32];%РІРєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ1
     fwrite(sobj,x);
     pause(0.2)
     fwrite(sobj,x);
     pause(0.2)
     
-    x=[uint8('@') 2 2 5 64+4+2];%13.5 вольт
+    x=[uint8('@') 2 2 5 64+4+2];%13.5 РІРѕР»СЊС‚
     fwrite(sobj,x)
     pause(0.2)
     fwrite(sobj,x);
@@ -142,8 +142,8 @@ try
     end
        fabric1 =getsnapshot(vid);
         
-    set(text3,'String','Подсветка шкалы');
-    x=[uint8('@') 1 2 1 32+64];%включение прибора;Набор1,подсветка шкалы
+    set(text3,'String','РџРѕРґСЃРІРµС‚РєР° С€РєР°Р»С‹');
+    x=[uint8('@') 1 2 1 32+64];%РІРєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ1,РїРѕРґСЃРІРµС‚РєР° С€РєР°Р»С‹
     fwrite(sobj,x);
     pause(0.2)
     fwrite(sobj,x);
@@ -161,7 +161,7 @@ try
 %         figure,imshow(fabric);
     
     
-    % определение исправности подсветки
+    % РѕРїСЂРµРґРµР»РµРЅРёРµ РёСЃРїСЂР°РІРЅРѕСЃС‚Рё РїРѕРґСЃРІРµС‚РєРё
     S=0;S1=0;S11=0;
     n=6;
     for k=1:6
@@ -201,7 +201,7 @@ try
         figure_ss = figure...
             ('Color'           , [0.8 0.8 0.8],...
             'NumberTitle'     ,'off', ...
-            'Name'            ,'Подсветка',...
+            'Name'            ,'РџРѕРґСЃРІРµС‚РєР°',...
             'Tag'             ,'figure_ss',...
             'PaperSize'       ,[20.98 29.68],...
             'PaperType'       ,'a4letter',...
@@ -210,16 +210,16 @@ try
             'Menu'            ,'none');
         imshow(fabric);
         
-        ss = questdlg('Возможно нет подсветки стрелки', ...
-            'Подсветка', ...
-            'Продожить проверку','Закончить проверку','Продожить проверку');
+        ss = questdlg('Р’РѕР·РјРѕР¶РЅРѕ РЅРµС‚ РїРѕРґСЃРІРµС‚РєРё СЃС‚СЂРµР»РєРё', ...
+            'РџРѕРґСЃРІРµС‚РєР°', ...
+            'РџСЂРѕРґРѕР¶РёС‚СЊ РїСЂРѕРІРµСЂРєСѓ','Р—Р°РєРѕРЅС‡РёС‚СЊ РїСЂРѕРІРµСЂРєСѓ','РџСЂРѕРґРѕР¶РёС‚СЊ РїСЂРѕРІРµСЂРєСѓ');
         % Handle response
         switch ss
-            case 'Продожить проверку'
+            case 'РџСЂРѕРґРѕР¶РёС‚СЊ РїСЂРѕРІРµСЂРєСѓ'
                 S11=0;
                 delete (figure_ss);
                
-            case 'Закончить проверку'
+            case 'Р—Р°РєРѕРЅС‡РёС‚СЊ РїСЂРѕРІРµСЂРєСѓ'
                 S11=1;
                 delete (figure_ss);
                
@@ -233,8 +233,8 @@ try
    
     if S>=6 && S11==0
         
-        % вычисление ц/м меток и положения стрелки Выкл (N- номер
-        % циферблата)
+        % РІС‹С‡РёСЃР»РµРЅРёРµ С†/Рј РјРµС‚РѕРє Рё РїРѕР»РѕР¶РµРЅРёСЏ СЃС‚СЂРµР»РєРё Р’С‹РєР» (N- РЅРѕРјРµСЂ
+        % С†РёС„РµСЂР±Р»Р°С‚Р°)
         SOOB2=1;
         
         for N=1:n
@@ -250,7 +250,7 @@ try
         
         
         %         SOOB2=6;
-        %         x=[uint8('@') 1 2 1 0];%выключен прибор
+        %         x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅ РїСЂРёР±РѕСЂ
         %         fwrite(sobj,x);
         %         pause(0.2)
         %         fwrite(sobj,x);
@@ -274,13 +274,13 @@ try
         end
         
         %
-        SOOB2=2; % ошибка при проверке Прибора
+        SOOB2=2; % РѕС€РёР±РєР° РїСЂРё РїСЂРѕРІРµСЂРєРµ РџСЂРёР±РѕСЂР°
         % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % %%%%%%            ПРОВЕРКА ПРИБОРА
+        % %%%%%%            РџР РћР’Р•Р РљРђ РџР РР‘РћР Рђ
         % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %
         %
-        set(text3,'String','ПРОВЕРКА ');
+        set(text3,'String','РџР РћР’Р•Р РљРђ ');
         
         set(PANel,'Visible','on');
         
@@ -288,14 +288,14 @@ try
         
         
         
-        %% вычисление  линии стрелки для положения 1 (N- номер
-        % циферблата)
+        %% РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 1 (N- РЅРѕРјРµСЂ
+        % С†РёС„РµСЂР±Р»Р°С‚Р°)
         
         
         
-        set(text3,'HorizontalAlignment','center','String','ТОЧКА 1');
+        set(text3,'HorizontalAlignment','center','String','РўРћР§РљРђ 1');
         SOOB2=6;
-        x=[uint8('@') 1 2 1 32];%включение прибора;Набор1
+        x=[uint8('@') 1 2 1 32];%РІРєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ1
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x);
@@ -325,14 +325,14 @@ try
         
         
         %
-        %% вычисление  линии стрелки для положения 2 (N- номер
-        % циферблата)
+        %% РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 2 (N- РЅРѕРјРµСЂ
+        % С†РёС„РµСЂР±Р»Р°С‚Р°)
         
         
         
-        set(text3,'String','ТОЧКА 2');
+        set(text3,'String','РўРћР§РљРђ 2');
         SOOB2=6;
-        x=[uint8('@') 1 2 2 32];%включение прибора;Набор2
+        x=[uint8('@') 1 2 2 32];%РІРєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ2
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x);
@@ -358,12 +358,12 @@ try
         
         
         %
-        %% вычисление  линии стрелки для положения 3 (N- номер
-        % циферблата)
+        %% РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 3 (N- РЅРѕРјРµСЂ
+        % С†РёС„РµСЂР±Р»Р°С‚Р°)
         
-        set(text3,'String','ТОЧКА 3');
+        set(text3,'String','РўРћР§РљРђ 3');
         SOOB2=6;
-        x=[uint8('@') 1 2 4 32];%включение прибора;Набор3
+        x=[uint8('@') 1 2 4 32];%РІРєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ3
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x);
@@ -392,13 +392,13 @@ try
         
         
         
-        %% вычисление  линии стрелки для положения 4 (N- номер
-        % циферблата)
+        %% РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 4 (N- РЅРѕРјРµСЂ
+        % С†РёС„РµСЂР±Р»Р°С‚Р°)
         
         
-        set(text3,'String','ТОЧКА 4');
+        set(text3,'String','РўРћР§РљРђ 4');
         SOOB2=6;
-        x=[uint8('@') 1 2 8 32];%включение прибора;Набор4
+        x=[uint8('@') 1 2 8 32];%РІРєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ4
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x);
@@ -425,15 +425,15 @@ try
         
         
         
-        set(text3,'String','Проверка напряжения');
-        % %% вычисление  линии стрелки  напряжения для положения 12 вольт (NC- номер
-        % % циферблата напряжения - последний циферблат  )
+        set(text3,'String','РџСЂРѕРІРµСЂРєР° РЅР°РїСЂСЏР¶РµРЅРёСЏ');
+        % %% РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё  РЅР°РїСЂСЏР¶РµРЅРёСЏ РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 12 РІРѕР»СЊС‚ (NC- РЅРѕРјРµСЂ
+        % % С†РёС„РµСЂР±Р»Р°С‚Р° РЅР°РїСЂСЏР¶РµРЅРёСЏ - РїРѕСЃР»РµРґРЅРёР№ С†РёС„РµСЂР±Р»Р°С‚  )
         
         %
         NC=6;
-        set(text3,'String','Напряжение 12 B');
+        set(text3,'String','РќР°РїСЂСЏР¶РµРЅРёРµ 12 B');
         SOOB2=6;
-        x=[uint8('@') 2 2 4 128+32+16];%12 вольт
+        x=[uint8('@') 2 2 4 128+32+16];%12 РІРѕР»СЊС‚
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x)
@@ -455,11 +455,11 @@ try
         Images{1,NC}=Im;
         CentrsEnd_strl(2,:,NC)=Centroid;
         
-        set(text3,'String','Напряжение 13 B');
-        %% вычисление  линии стрелки  напряжения для положения 13 вольт (NC- номер
-        % % циферблата напряжения - последний циферблат  )
+        set(text3,'String','РќР°РїСЂСЏР¶РµРЅРёРµ 13 B');
+        %% РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё  РЅР°РїСЂСЏР¶РµРЅРёСЏ РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 13 РІРѕР»СЊС‚ (NC- РЅРѕРјРµСЂ
+        % % С†РёС„РµСЂР±Р»Р°С‚Р° РЅР°РїСЂСЏР¶РµРЅРёСЏ - РїРѕСЃР»РµРґРЅРёР№ С†РёС„РµСЂР±Р»Р°С‚  )
         SOOB2=6;
-        x=[uint8('@') 2 2 5 16+4];%13 вольт
+        x=[uint8('@') 2 2 5 16+4];%13 РІРѕР»СЊС‚
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x)
@@ -482,11 +482,11 @@ try
         CentrsEnd_strl(3,:,NC)=Centroid;
         
         
-        set(text3,'String','Напряжение 15 B');
-        %% вычисление  линии стрелки  напряжения для положения 15 вольт (NC- номер
-        % % циферблата напряжения - последний циферблат  )
+        set(text3,'String','РќР°РїСЂСЏР¶РµРЅРёРµ 15 B');
+        %% РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё  РЅР°РїСЂСЏР¶РµРЅРёСЏ РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 15 РІРѕР»СЊС‚ (NC- РЅРѕРјРµСЂ
+        % % С†РёС„РµСЂР±Р»Р°С‚Р° РЅР°РїСЂСЏР¶РµРЅРёСЏ - РїРѕСЃР»РµРґРЅРёР№ С†РёС„РµСЂР±Р»Р°С‚  )
         SOOB2=6;
-        x=[uint8('@') 2 2 5 4+8+16+64+128];%15 вольт
+        x=[uint8('@') 2 2 5 4+8+16+64+128];%15 РІРѕР»СЊС‚
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x)
@@ -507,11 +507,11 @@ try
         Images{3,NC}=Im;
         CentrsEnd_strl(4,:,NC)=Centroid;
         
-        set(text3,'String','Напряжение 16 B');
-        % вычисление  линии стрелки  напряжения для положения 16 вольт (NC- номер
-        % % циферблата напряжения - последний циферблат  )
+        set(text3,'String','РќР°РїСЂСЏР¶РµРЅРёРµ 16 B');
+        % РІС‹С‡РёСЃР»РµРЅРёРµ  Р»РёРЅРёРё СЃС‚СЂРµР»РєРё  РЅР°РїСЂСЏР¶РµРЅРёСЏ РґР»СЏ РїРѕР»РѕР¶РµРЅРёСЏ 16 РІРѕР»СЊС‚ (NC- РЅРѕРјРµСЂ
+        % % С†РёС„РµСЂР±Р»Р°С‚Р° РЅР°РїСЂСЏР¶РµРЅРёСЏ - РїРѕСЃР»РµРґРЅРёР№ С†РёС„РµСЂР±Р»Р°С‚  )
         SOOB2=6;
-        x=[uint8('@') 2 2 6 64];%16 вольт
+        x=[uint8('@') 2 2 6 64];%16 РІРѕР»СЊС‚
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x)
@@ -531,16 +531,16 @@ try
         Images{4,NC}=Im;
         CentrsEnd_strl(5,:,NC)=Centroid;
         
-        set(text3,'String','Напряжение 13,5 B');
+        set(text3,'String','РќР°РїСЂСЏР¶РµРЅРёРµ 13,5 B');
         SOOB2=6;
-        x=[uint8('@') 2 2 5 64+4+2];%13.5 вольт
+        x=[uint8('@') 2 2 5 64+4+2];%13.5 РІРѕР»СЊС‚
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x)
         SOOB2=2;
         pause(0.1)
         
-        %центр вращения стрелки
+        %С†РµРЅС‚СЂ РІСЂР°С‰РµРЅРёСЏ СЃС‚СЂРµР»РєРё
         inter=ones(n,2);
         popinter=zeros(n,2);
         for N=1:n
@@ -582,7 +582,7 @@ try
         %         CentrsEnd_strl
         %
         CentrsEnd_strl=CentrsEnd_strl+PopCentrsEnd_strl;
-        % наклон меток
+        % РЅР°РєР»РѕРЅ РјРµС‚РѕРє
         
         Orient_metok=zeros(n,4);
         for N=1:n
@@ -613,7 +613,7 @@ try
         
         
         
-        % цена деления шкал
+        % С†РµРЅР° РґРµР»РµРЅРёСЏ С€РєР°Р»
         Cena= ones(n,1);
         
         
@@ -637,7 +637,7 @@ try
         
         
         
-        % угол стрелок
+        % СѓРіРѕР» СЃС‚СЂРµР»РѕРє
         for N=1:n
             %             if N~=5
             for i=2:5
@@ -695,18 +695,18 @@ try
         
         
         
-        set(text3,'string','Светимость ав. диодов');
-        %Определение светимости аварийных светодиодов
+        set(text3,'string','РЎРІРµС‚РёРјРѕСЃС‚СЊ Р°РІ. РґРёРѕРґРѕРІ');
+        %РћРїСЂРµРґРµР»РµРЅРёРµ СЃРІРµС‚РёРјРѕСЃС‚Рё Р°РІР°СЂРёР№РЅС‹С… СЃРІРµС‚РѕРґРёРѕРґРѕРІ
         SOOB2=6;
         
-        x=[uint8('@') 1 2 1 128+32+16+8+4+2+1];%включение прибора;Набор1,аварийные диоды
+        x=[uint8('@') 1 2 1 128+32+16+8+4+2+1];%РІРєР»СЋС‡РµРЅРёРµ РїСЂРёР±РѕСЂР°;РќР°Р±РѕСЂ1,Р°РІР°СЂРёР№РЅС‹Рµ РґРёРѕРґС‹
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x);
         pause(0.1)
         
         
-        %Определение работоспособности зуммера
+        %РћРїСЂРµРґРµР»РµРЅРёРµ СЂР°Р±РѕС‚РѕСЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё Р·СѓРјРјРµСЂР°
         %         flushinput(sobj);
         %         fwrite(sobj,y);
         %         while (sobj.BytesAvailable<6)
@@ -853,7 +853,7 @@ try
         
         
         SOOB2=6;
-        x=[uint8('@') 1 2 1 0];%выключение
+        x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅРёРµ
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x);
@@ -933,37 +933,37 @@ try
             if zummer==1 && Led==NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'g',...
-                    'String'                ,' Г О Д Е Н',...
+                    'String'                ,' Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 Color_Menu(7)=1;
             elseif zummer~=1 && Led==NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' Н Е Г О Д Е Н',...
+                    'String'                ,' Рќ Р• Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 set( text2f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' неисправна цепь зуммера',...
+                    'String'                ,' РЅРµРёСЃРїСЂР°РІРЅР° С†РµРїСЊ Р·СѓРјРјРµСЂР°',...
                     'Visible'               ,'on');
                 Color_Menu(7)=1;
             elseif zummer==1 && Led~=NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' Н Е Г О Д Е Н',...
+                    'String'                ,' Рќ Р• Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 set( text2f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' неисправна цепь ав. диодов',...
+                    'String'                ,' РЅРµРёСЃРїСЂР°РІРЅР° С†РµРїСЊ Р°РІ. РґРёРѕРґРѕРІ',...
                     'Visible'               ,'on');
                 Color_Menu(7)=0;
             elseif zummer~=1 && Led~=NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' Н Е Г О Д Е Н',...
+                    'String'                ,' Рќ Р• Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 set( text2f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' неисправна цепь зуммера и ав. диодов',...
+                    'String'                ,' РЅРµРёСЃРїСЂР°РІРЅР° С†РµРїСЊ Р·СѓРјРјРµСЂР° Рё Р°РІ. РґРёРѕРґРѕРІ',...
                     'Visible'               ,'on');
                 Color_Menu(7)=0;
             end
@@ -971,7 +971,7 @@ try
             if zummer==1 && Led==NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,'  Н Е Г О Д Е Н',...
+                    'String'                ,'  Рќ Р• Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 set( text2f1,...
                     'Foregroundcolor'       ,'r',...
@@ -981,38 +981,38 @@ try
             elseif zummer~=1 && Led==NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' Н Е Г О Д Е Н',...
+                    'String'                ,' Рќ Р• Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 set( text2f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' неисправна цепь зуммера',...
+                    'String'                ,' РЅРµРёСЃРїСЂР°РІРЅР° С†РµРїСЊ Р·СѓРјРјРµСЂР°',...
                     'Visible'               ,'on');
                 Color_Menu(7)=1;
             elseif zummer==1 && Led~=NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' Н Е Г О Д Е Н',...
+                    'String'                ,' Рќ Р• Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 set( text2f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' неисправна цепь ав. диодов',...
+                    'String'                ,' РЅРµРёСЃРїСЂР°РІРЅР° С†РµРїСЊ Р°РІ. РґРёРѕРґРѕРІ',...
                     'Visible'               ,'on');
                 Color_Menu(7)=0;
             elseif zummer~=1 && Led~=NumShkal
                 set( text1f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' Н Е Г О Д Е Н',...
+                    'String'                ,' Рќ Р• Р“ Рћ Р” Р• Рќ',...
                     'Visible'               ,'on');
                 set( text2f1,...
                     'Foregroundcolor'       ,'r',...
-                    'String'                ,' неисправна цепь зуммера и ав. диодов',...
+                    'String'                ,' РЅРµРёСЃРїСЂР°РІРЅР° С†РµРїСЊ Р·СѓРјРјРµСЂР° Рё Р°РІ. РґРёРѕРґРѕРІ',...
                     'Visible'               ,'on');
                 Color_Menu(7)=0;
             end
             
         end
         
-        %кнопка "изображений"
+        %РєРЅРѕРїРєР° "РёР·РѕР±СЂР°Р¶РµРЅРёР№"
         
         IMAge=uicontrol(figure1,...
             'Style'                ,'pushbutton', ...
@@ -1023,7 +1023,7 @@ try
             'FontName'             ,'Arial',...
             'Units'                ,'normalized', ...
             'Position'             ,[0.05 0.4 0.2 0.05] ,...
-            'String'               ,'ПОДРОБНО ',...
+            'String'               ,'РџРћР”Р РћР‘РќРћ ',...
             'Visible'              ,'on',...
             'callback'             ,'Im_KD8071');
         
@@ -1040,7 +1040,7 @@ try
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % %     ЗАПИСЬ В ФAЙЛ
+        % %     Р—РђРџРРЎР¬ Р’ Р¤AР™Р›
         % %**************************************************************************
         % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1049,7 +1049,7 @@ try
         
         F=fopen('inforez8071.m','r');
         
-        NameFolder=fscanf(F,'%s',1); %имя папки в которую пишет результат"
+        NameFolder=fscanf(F,'%s',1); %РёРјСЏ РїР°РїРєРё РІ РєРѕС‚РѕСЂСѓСЋ РїРёС€РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚"
         
         fclose(F);
         [stats,msg]=mkdir(NameFolder);
@@ -1103,7 +1103,7 @@ try
         
         %         if (G~=0)&& (Prov_1==1)
         % %             closepreview(vid);
-        %             % % появление кнопки проверки по отдельности.
+        %             % % РїРѕСЏРІР»РµРЅРёРµ РєРЅРѕРїРєРё РїСЂРѕРІРµСЂРєРё РїРѕ РѕС‚РґРµР»СЊРЅРѕСЃС‚Рё.
         %             PRInt_Er=uicontrol(figure1,...
         %                 'Style'                ,'pushbutton', ...
         %                 'Foregroundcolor'      ,   'k',...
@@ -1113,7 +1113,7 @@ try
         %                 'FontName'             ,'Arial',...
         %                 'Units'                ,'normalized', ...
         %                 'Position'             ,[0.05 0.2 0.2 0.05] ,...
-        %                 'String'               ,'На регулировку ',...
+        %                 'String'               ,'РќР° СЂРµРіСѓР»РёСЂРѕРІРєСѓ ',...
         %                 'Visible'              ,'off',...
         %                 'callback'             ,'NEXt_Callback_Er');
         %
@@ -1123,7 +1123,7 @@ try
         %             set(text4          ,'Visible','off');
         %             set(BEGin          ,'visible','off');
         %             set(NEXt           ,'visible','on');
-        %             set(NEXt           ,'string','ПОЛНАЯ ПРОВЕРКА');
+        %             set(NEXt           ,'string','РџРћР›РќРђРЇ РџР РћР’Р•Р РљРђ');
         %             set(EXIt           ,'Visible','on');
         %             set(IMAge          ,'Visible','on');
         %             set(PROv           ,'Visible','on');
@@ -1138,7 +1138,7 @@ try
         set(text4          ,'Visible','off');
         set(BEGin          ,'visible','off');
         set(NEXt           ,'visible','on');
-        set(NEXt           ,'string','CЛЕДУЮЩИЙ ПРИБОР');
+        set(NEXt           ,'string','CР›Р•Р”РЈР®Р©РР™ РџР РР‘РћР ');
         set(EXIt           ,'Visible','on');
         set(IMAge          ,'Visible','on');
         set(PROv           ,'Visible','off');
@@ -1148,7 +1148,7 @@ try
     else
         
         SOOB2=6;
-        x=[uint8('@') 2 2 5 64+4+2];%13.5 вольт
+        x=[uint8('@') 2 2 5 64+4+2];%13.5 РІРѕР»СЊС‚
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x)
@@ -1157,7 +1157,7 @@ try
         
         delete(findobj('tag','figure_vid'));
         
-        x=[uint8('@') 1 2 1 0];%выключен прибор
+        x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅ РїСЂРёР±РѕСЂ
         fwrite(sobj,x);
         pause(0.2)
         fwrite(sobj,x);
@@ -1188,13 +1188,13 @@ try
         
         set( text1f1,...
             'Foregroundcolor'       ,'r',...
-            'String'                ,'Нет подсветки шкалы или неправильное расположение прибора',...
+            'String'                ,'РќРµС‚ РїРѕРґСЃРІРµС‚РєРё С€РєР°Р»С‹ РёР»Рё РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ РїСЂРёР±РѕСЂР°',...
             'Visible'               ,'on');
        if S11~=0
            if S1>0
             set( text1f1,...
                 'Foregroundcolor'       ,'r',...
-                'String'                ,'Нет подсветки стрелки',...
+                'String'                ,'РќРµС‚ РїРѕРґСЃРІРµС‚РєРё СЃС‚СЂРµР»РєРё',...
                 'Visible'               ,'on');
         end
        end   
@@ -1222,13 +1222,13 @@ catch
         case 1 %
             fabric =getsnapshot(vid);
             
-            x=[uint8('@') 2 2 5 64+4+2];%13.5 вольт
+            x=[uint8('@') 2 2 5 64+4+2];%13.5 РІРѕР»СЊС‚
             fwrite(sobj,x)
             pause(0.1)
             
             delete(findobj('tag','figure_vid'));
             
-            x=[uint8('@') 1 2 1 0];%выключен прибор
+            x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅ РїСЂРёР±РѕСЂ
             fwrite(sobj,x);
             pause(0.1)
             %%x1=fread(sobj,6);
@@ -1256,7 +1256,7 @@ catch
             
             set( text1f1,...
                 'Foregroundcolor'       ,'r',...
-                'String'                ,'Нет освещения или подсветки шкалы',...
+                'String'                ,'РќРµС‚ РѕСЃРІРµС‰РµРЅРёСЏ РёР»Рё РїРѕРґСЃРІРµС‚РєРё С€РєР°Р»С‹',...
                 'Visible'               ,'on');
             
             
@@ -1273,13 +1273,13 @@ catch
             %
             fabric =getsnapshot(vid);
             
-            x=[uint8('@') 2 2 5 64+4+2];%13.5 вольт
+            x=[uint8('@') 2 2 5 64+4+2];%13.5 РІРѕР»СЊС‚
             fwrite(sobj,x)
             pause(0.1)
             
             delete(findobj('tag','figure_vid'));
             
-            x=[uint8('@') 1 2 1 0];%выключен прибор
+            x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅ РїСЂРёР±РѕСЂ
             fwrite(sobj,x);
             pause(0.1)
             %%x1=fread(sobj,6);
@@ -1311,12 +1311,12 @@ catch
             
             set(text3,'Visible','off');
             set(PANel,'Visible','off');
-            set(text3,'HorizontalAlignment','center','String','ОШИБКА ПОВЕРКИ','Foregroundcolor','r');
+            set(text3,'HorizontalAlignment','center','String','РћРЁРР‘РљРђ РџРћР’Р•Р РљР','Foregroundcolor','r');
             
             
             set( text1f1,...
                 'Foregroundcolor'       ,'r',...
-                'String'                ,'Проблемы с освещением  ',...
+                'String'                ,'РџСЂРѕР±Р»РµРјС‹ СЃ РѕСЃРІРµС‰РµРЅРёРµРј  ',...
                 'Visible'               ,'on');
             
             
@@ -1330,7 +1330,7 @@ catch
             
             
             set(text1_1,'Visible','on');
-            set(text1_1,'String','Проверьте соединения!');
+            set(text1_1,'String','РџСЂРѕРІРµСЂСЊС‚Рµ СЃРѕРµРґРёРЅРµРЅРёСЏ!');
             set(EXIt,'KeyPressFcn','Exit_my' );
             
             
@@ -1345,7 +1345,7 @@ catch
             
             set(text3,'Visible','on');
             set(PANel,'Visible','on');
-            set(text3,'HorizontalAlignment','center','String','ОШИБКА ЗАПИСИ РЕЗУЛЬТАТА ПРОВЕРКИ ');
+            set(text3,'HorizontalAlignment','center','String','РћРЁРР‘РљРђ Р—РђРџРРЎР Р Р•Р—РЈР›Р¬РўРђРўРђ РџР РћР’Р•Р РљР ');
             %set(text24,'visible','on','Background',[0.8 0.8 0.8],...
             %'ForegroundColor',[1 0 0], 'String','');
             delete(findobj('tag','figure_vid'));
@@ -1353,7 +1353,7 @@ catch
             
             set(BEGin,'Visible','off' ) ;
             set(text1_1,'Visible','on');
-            set(text1_1,'String','Нажмите кнопку "ВЫХОД"!');
+            set(text1_1,'String','РќР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ "Р’Р«РҐРћР”"!');
             set(EXIt,'KeyPressFcn','Exit_my' );
             set(EXIt,'Visible','on');
             
@@ -1369,7 +1369,7 @@ catch
             
             set(text3,'Visible','off');
             set(PANel,'Visible','off');
-            set(text3,'HorizontalAlignment','center','String','ОШИБКА ЗАГРУЗКИ ФАЙЛА inforez8071.m ');
+            set(text3,'HorizontalAlignment','center','String','РћРЁРР‘РљРђ Р—РђР“Р РЈР—РљР Р¤РђР™Р›Рђ inforez8071.m ');
             %set(text24,'visible','on','Background',[0.8 0.8 0.8],...
             %'ForegroundColor',[1 0 0], 'String','');
             
@@ -1377,7 +1377,7 @@ catch
             
             set(BEGin,'Visible','off' ) ;
             set(text1_1,'Visible','on');
-            set(text1_1,'String','Нажмите кнопку "ВЫХОД"!');
+            set(text1_1,'String','РќР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ "Р’Р«РҐРћР”"!');
             set(EXIt,'KeyPressFcn','Exit_my' );
             set(EXIt,'Visible','on');
             delete(findobj('tag','figure_vid'));
@@ -1392,7 +1392,7 @@ catch
             set(NEXt,'Visible','off' );
             set(text3,'Visible','on');
             set(PANel,'Visible','on');
-            set(text3,'HorizontalAlignment','center','String','СБОЙ КАЛИБРАТОРА');
+            set(text3,'HorizontalAlignment','center','String','РЎР‘РћР™ РљРђР›РР‘Р РђРўРћР Рђ');
             set(text4          ,'Visible','off');
             set(BEGin          ,'visible','off');
             set(NEXt           ,'visible','on');
@@ -1400,7 +1400,7 @@ catch
             set(IMAge          ,'Visible','off');
             % %
             set(text1_1,'Visible','on');
-            set(text1_1,'String','Начните проверку снова');
+            set(text1_1,'String','РќР°С‡РЅРёС‚Рµ РїСЂРѕРІРµСЂРєСѓ СЃРЅРѕРІР°');
             set(EXIt,'KeyPressFcn','Exit_my' );
             delete(findobj('tag','figure_vid'));
             
@@ -1412,13 +1412,13 @@ catch
             %
             fabric =getsnapshot(vid);
             
-            x=[uint8('@') 2 2 5 64+4+2];%13.5 вольт
+            x=[uint8('@') 2 2 5 64+4+2];%13.5 РІРѕР»СЊС‚
             fwrite(sobj,x)
             pause(0.1)
             
             
             
-            x=[uint8('@') 1 2 1 0];%выключен прибор
+            x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅ РїСЂРёР±РѕСЂ
             fwrite(sobj,x);
             pause(0.1)
             %%x1=fread(sobj,6);
@@ -1450,12 +1450,12 @@ catch
             
             set(text3,'Visible','off');
             set(PANel,'Visible','off');
-            set(text3,'HorizontalAlignment','center','String','ОШИБКА ПОВЕРКИ','Foregroundcolor','r');
+            set(text3,'HorizontalAlignment','center','String','РћРЁРР‘РљРђ РџРћР’Р•Р РљР','Foregroundcolor','r');
             
             
             set( text1f1,...
                 'Foregroundcolor'       ,'r',...
-                'String'                ,'Проблемы с освещением или стрелка на "0" ',...
+                'String'                ,'РџСЂРѕР±Р»РµРјС‹ СЃ РѕСЃРІРµС‰РµРЅРёРµРј РёР»Рё СЃС‚СЂРµР»РєР° РЅР° "0" ',...
                 'Visible'               ,'on');
             
             
@@ -1469,7 +1469,7 @@ catch
             
             
             set(text1_1,'Visible','on');
-            set(text1_1,'String','Проверьте соединения!');
+            set(text1_1,'String','РџСЂРѕРІРµСЂСЊС‚Рµ СЃРѕРµРґРёРЅРµРЅРёСЏ!');
             set(EXIt,'KeyPressFcn','Exit_my' );
             
             

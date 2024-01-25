@@ -1,5 +1,5 @@
-function NEXt_Callback_Er(varargin)
-% следующий прибор
+п»їfunction NEXt_Callback_Er(varargin)
+% СЃР»РµРґСѓСЋС‰РёР№ РїСЂРёР±РѕСЂ
 
 global figure1  EXIt...
        SOOB1 BEGin  NEXt PANel  IMAge text1_1 PROv PRInt_Er...
@@ -8,7 +8,7 @@ global figure1  EXIt...
        left bottom widht height vid sobj NumShkal...
        Otklonenie
        
-   n=NumShkal; %Кол-во циферблатов    
+   n=NumShkal; %РљРѕР»-РІРѕ С†РёС„РµСЂР±Р»Р°С‚РѕРІ    
      
    
 set(text3          ,'Visible','off');
@@ -16,7 +16,7 @@ set(PANel          ,'Visible','off');
 set(text4          ,'Visible','off');
 set(BEGin          ,'visible','off'); 
 set(NEXt           ,'visible','on');
-set(NEXt           ,'string','CЛЕДУЮЩИЙ ПРИБОР');
+set(NEXt           ,'string','CР›Р•Р”РЈР®Р©РР™ РџР РР‘РћР ');
 set(EXIt           ,'Visible','on');
 set(IMAge          ,'Visible','off'); 
 set(PROv           ,'Visible','off');
@@ -24,7 +24,7 @@ set(PRInt_Er        ,'Visible','off');
 
  F=fopen('inforez8071.m','r');
 
-NameFolder=fscanf(F,'%s',1); %имя папки в которую пишет результат"
+NameFolder=fscanf(F,'%s',1); %РёРјСЏ РїР°РїРєРё РІ РєРѕС‚РѕСЂСѓСЋ РїРёС€РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚"
 
  fclose(F);     %
 % 

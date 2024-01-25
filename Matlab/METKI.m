@@ -1,4 +1,4 @@
-function Centrs_metki=METKI(A,Ms,crop,threshold,Open,N)
+﻿function Centrs_metki=METKI(A,Ms,crop,threshold,Open,N)
 cropA=crop(N,:);
 A=imcrop(A,cropA);
  
