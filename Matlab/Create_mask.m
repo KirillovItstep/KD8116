@@ -1,4 +1,4 @@
-п»їclear all
+clear all
 load 'infodat8071_6(0000)';
 load 'fabric';
 for k=1:6
@@ -7,7 +7,7 @@ for k=1:6
         cropA=crop(k,:);
         A=imcrop(fabric,cropA);
         A=im2bw(A,thresholdOSV(k)-0.1);
-        Ms{2,k}=roipoly(A);% СЂРёСЃРѕРІР°РЅРёРµ РјР°СЃРєРё РЅР° РІС‚РѕСЂСѓСЋ РѕС‚РјРµС‚РєСѓ%
+        Ms{2,k}=roipoly(A);% рисование маски на вторую отметку%
         
         
 %     end

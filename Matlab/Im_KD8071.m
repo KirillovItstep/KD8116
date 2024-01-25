@@ -1,24 +1,24 @@
-п»їfunction Im_KD8071
+function Im_KD8071
 global inter Images Centrs_metki CentrsEnd_strl n...
     dopusk Goden Datchik NameUnitDatcik  NumShkal...
     ImLed Otklonenie OtklonenieLedSum Color_Menu
 
-% Datchik=char('РЈР РћР’Р•РќР¬ РўРћРџР›РР’Рђ',...
-%              'РўР•РњРџР•Р РђРўРЈР Рђ РћР–',...
-%              'Р”РђР’Р›Р•РќРР• РњРђРЎР›Рђ Р’ Р”Р’РР“РђРўР•Р›Р•',...
-%              'Р”РђР’Р›Р•РќРР• Р’РћР—Р”РЈРҐРђ ',...
-%              'Р”РђР’Р›Р•РќРР• РњРђРЎР›Рђ Р’ РљРџРџ',...
-%              'РќРђРџР РЇР–Р•РќРР•');
+% Datchik=char('УРОВЕНЬ ТОПЛИВА',...
+%              'ТЕМПЕРАТУРА ОЖ',...
+%              'ДАВЛЕНИЕ МАСЛА В ДВИГАТЕЛЕ',...
+%              'ДАВЛЕНИЕ ВОЗДУХА ',...
+%              'ДАВЛЕНИЕ МАСЛА В КПП',...
+%              'НАПРЯЖЕНИЕ');
 
-% NameUnitDatcik=char('(РїСЂРѕС†РµРЅС‚С‹)',...
-%                     '(РіСЂР°РґСѓСЃС‹)',...
-%                     '(x 100 РєРџР°)',...
-%                     '(x 100 РєРџР°)',...
-%                     '(x 100 РєРџР°)',...
-%                     '(Р’РѕР»СЊС‚)');
+% NameUnitDatcik=char('(проценты)',...
+%                     '(градусы)',...
+%                     '(x 100 кПа)',...
+%                     '(x 100 кПа)',...
+%                     '(x 100 кПа)',...
+%                     '(Вольт)');
 
-n=menu_KD8071('Р’Р«Р‘РћР  РЈРљРђР—РђРўР•Р›РЇ ',Datchik(1,:), Datchik(2,:),Datchik(3,:),...
-    Datchik(4,:),Datchik(5,:),Datchik(6,:),'РђРІР°СЂРёР№РЅС‹Рµ СЃРІРµС‚РѕРґРёРѕРґС‹');
+n=menu_KD8071('ВЫБОР УКАЗАТЕЛЯ ',Datchik(1,:), Datchik(2,:),Datchik(3,:),...
+    Datchik(4,:),Datchik(5,:),Datchik(6,:),'Аварийные светодиоды');
 
 switch n
     case 1
@@ -40,7 +40,7 @@ switch n
         NameFig=Datchik(6,:);
         NameUnit=NameUnitDatcik(6,:);
     case 7
-        NameFig='РђРІР°СЂРёР№РЅС‹Рµ СЃРІРµС‚РѕРґРёРѕРґС‹';
+        NameFig='Аварийные светодиоды';
    otherwise     
         
 end
@@ -122,24 +122,24 @@ figure2 = figure...
         set( text0_10l,'Foregroundcolor' ,'r');
         set( text0_110l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(1));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_110l,'String' ,stroka);
         
     elseif  (Otklonenie(1,5)~=0)&&(OtklonenieLedSum(1)<=1)
         set( text0_10l,'Foregroundcolor' ,'r');
         set( text0_110l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(1));
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_110l,'String' ,stroka);
         
     elseif  (Otklonenie(1,5)~=0)&&(OtklonenieLedSum(1)>1)
         set( text0_10l,'Foregroundcolor' ,'r');
         set( text0_110l,'Foregroundcolor' ,'r');
         set( text0_111l,'Foregroundcolor' ,'r');
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_110l,'String' ,stroka);
         ch=int2str(OtklonenieLedSum(1));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_111l,'String' ,stroka);
         
     end
@@ -200,24 +200,24 @@ figure2 = figure...
         set( text0_20l,'Foregroundcolor' ,'r');
         set( text0_210l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_210l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)<=1)
         set( text0_20l,'Foregroundcolor' ,'r');
         set( text0_210l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_210l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)>1)
         set( text0_20l,'Foregroundcolor' ,'r');
         set( text0_210l,'Foregroundcolor' ,'r');
         set( text0_211l,'Foregroundcolor' ,'r');
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_210l,'String' ,stroka);
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_211l,'String' ,stroka);
         
     end
@@ -280,24 +280,24 @@ figure2 = figure...
         set( text0_30l,'Foregroundcolor' ,'r');
         set( text0_310l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_310l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)<=1)
         set( text0_30l,'Foregroundcolor' ,'r');
         set( text0_310l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_310l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)>1)
         set( text0_30l,'Foregroundcolor' ,'r');
         set( text0_310l,'Foregroundcolor' ,'r');
         set( text0_311l,'Foregroundcolor' ,'r');
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_310l,'String' ,stroka);
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_311l,'String' ,stroka);
         
     end
@@ -358,24 +358,24 @@ figure2 = figure...
         set( text0_40l,'Foregroundcolor' ,'r');
         set( text0_410l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_410l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)<=1)
         set( text0_40l,'Foregroundcolor' ,'r');
         set( text0_410l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_410l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)>1)
         set( text0_40l,'Foregroundcolor' ,'r');
         set( text0_410l,'Foregroundcolor' ,'r');
         set( text0_411l,'Foregroundcolor' ,'r');
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_410l,'String' ,stroka);
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_411l,'String' ,stroka);
         
     end
@@ -434,24 +434,24 @@ figure2 = figure...
         set( text0_50l,'Foregroundcolor' ,'r');
         set( text0_510l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_510l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)<=1)
         set( text0_50l,'Foregroundcolor' ,'r');
         set( text0_510l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_510l,'String' ,stroka);
         
     elseif  (Otklonenie(i,5)~=0)&&(OtklonenieLedSum(i)>1)
         set( text0_50l,'Foregroundcolor' ,'r');
         set( text0_510l,'Foregroundcolor' ,'r');
         set( text0_511l,'Foregroundcolor' ,'r');
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_510l,'String' ,stroka);
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_511l,'String' ,stroka);
         
     end
@@ -512,24 +512,24 @@ figure2 = figure...
         set( text0_60l,'Foregroundcolor' ,'r');
         set( text0_610l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_610l,'String' ,stroka);
     
     elseif  (Otklonenie(i,5)~=0)&(OtklonenieLedSum(i)<=1)
         set( text0_60l,'Foregroundcolor' ,'r');
         set( text0_610l,'Foregroundcolor' ,'r');
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_610l,'String' ,stroka);
     
      elseif  (Otklonenie(i,5)~=0)&(OtklonenieLedSum(i)>1)
         set( text0_60l,'Foregroundcolor' ,'r');
         set( text0_610l,'Foregroundcolor' ,'r');
         set( text0_611l,'Foregroundcolor' ,'r');
-        stroka=strcat('РќРµ РіРѕСЂРёС‚ СЃРІРµС‚РѕРґРёРѕРґ');
+        stroka=strcat('Не горит светодиод');
         set( text0_610l,'String' ,stroka);
         ch=int2str(OtklonenieLedSum(i));
-        stroka=strcat('Р“РѕСЂСЏС‚ ',' :',ch,' СЃРІРµС‚РѕРґРёРѕРґР°');
+        stroka=strcat('Горят ',' :',ch,' светодиода');
         set( text0_611l,'String' ,stroka);
     
      end
@@ -576,7 +576,7 @@ figure2 = figure...
         'HorizontalAlignment'   ,'center',...
         'Units'                 ,'normalized', ...
         'Position'              , [0.3 0.89 0.2 0.1] ,...
-        'String'                ,'РђР±СЃРѕР»СЋС‚РЅР°СЏ РѕСЃРЅРѕРІРЅР°СЏ РїРѕРіСЂРµС€РЅРѕСЃС‚СЊ',...
+        'String'                ,'Абсолютная основная погрешность',...
         'Visible'               ,'on');
     
     text0_11=uicontrol(figure2,...
@@ -602,7 +602,7 @@ figure2 = figure...
         'HorizontalAlignment'   ,'center',...
         'Units'                 ,'normalized', ...
         'Position'              , [0.5 0.89 0.2 0.1] ,...
-        'String'                ,'Р”РѕРїСѓСЃС‚РёРјР°СЏ Р°Р±СЃРѕР»СЋС‚РЅР°СЏ РѕСЃРЅРѕРІРЅР°СЏ РїРѕРіСЂРµС€РЅРѕСЃС‚СЊ',...
+        'String'                ,'Допустимая абсолютная основная погрешность',...
         'Visible'               ,'on');
     
     text0_21=uicontrol(figure2,...
@@ -628,7 +628,7 @@ figure2 = figure...
         'HorizontalAlignment'   ,'center',...
         'Units'                 ,'normalized', ...
         'Position'              , [0.7 0.89 0.2 0.1] ,...
-        'String'                ,'РџСЂРёРјРµС‡Р°РЅРёРµ',...
+        'String'                ,'Примечание',...
         'Visible'               ,'on');
     
     
@@ -699,13 +699,13 @@ figure2 = figure...
     if ((abs(dopusk(n,1)))-(abs(Otklonenie(n,1))))>=0
         
         set(text11 ,'Foregroundcolor'   ,'b');
-        set(text13 ,'String'            ,'РџРѕРєР°Р·Р°РЅРёСЏ СѓРєР°Р·Р°С‚РµР»СЏ РІ РїСЂРµРґРµР»Р°С… РґРѕРїСѓСЃРєР°',...
+        set(text13 ,'String'            ,'Показания указателя в пределах допуска',...
             'Foregroundcolor'   ,'b');
         
         
     else
         set(text11 ,'Foregroundcolor'   , 'r');
-        set(text13 ,'String'            , 'РЈРєР°Р·Р°С‚РµР»СЊ С‚СЂРµР±СѓРµС‚ СЂРµРіСѓР»РёСЂРѕРІРєРё РІ СЌС‚РѕР№ С‚РѕС‡РєРµ',...
+        set(text13 ,'String'            , 'Указатель требует регулировки в этой точке',...
             'Foregroundcolor'  ,'r');
     end
     
@@ -773,13 +773,13 @@ figure2 = figure...
     if ((abs(dopusk(n,2)))-(abs(Otklonenie(n,2))))>=0
         
         set(text21 ,'Foregroundcolor'   ,'b');
-        set(text23 ,'String'            ,'РџРѕРєР°Р·Р°РЅРёСЏ СѓРєР°Р·Р°С‚РµР»СЏ РІ РїСЂРµРґРµР»Р°С… РґРѕРїСѓСЃРєР°',...
+        set(text23 ,'String'            ,'Показания указателя в пределах допуска',...
             'Foregroundcolor'   ,'b');
         
         
     else
         set(text21 ,'Foregroundcolor'   , 'r');
-        set(text23 ,'String'            , 'РЈРєР°Р·Р°С‚РµР»СЊ С‚СЂРµР±СѓРµС‚ СЂРµРіСѓР»РёСЂРѕРІРєРё РІ СЌС‚РѕР№ С‚РѕС‡РєРµ',...
+        set(text23 ,'String'            , 'Указатель требует регулировки в этой точке',...
             'Foregroundcolor'  ,'r');
     end
     
@@ -844,13 +844,13 @@ figure2 = figure...
     if ((abs(dopusk(n,3)))-(abs(Otklonenie(n,3))))>=0
         
         set(text31 ,'Foregroundcolor'   ,'b');
-        set(text33 ,'String'            ,'РџРѕРєР°Р·Р°РЅРёСЏ СѓРєР°Р·Р°С‚РµР»СЏ РІ РїСЂРµРґРµР»Р°С… РґРѕРїСѓСЃРєР°',...
+        set(text33 ,'String'            ,'Показания указателя в пределах допуска',...
             'Foregroundcolor'   ,'b');
         
         
     else
         set(text31 ,'Foregroundcolor'   , 'r');
-        set(text33 ,'String'            , 'РЈРєР°Р·Р°С‚РµР»СЊ С‚СЂРµР±СѓРµС‚ СЂРµРіСѓР»РёСЂРѕРІРєРё РІ СЌС‚РѕР№ С‚РѕС‡РєРµ',...
+        set(text33 ,'String'            , 'Указатель требует регулировки в этой точке',...
             'Foregroundcolor'  ,'r');
     end
     
@@ -915,13 +915,13 @@ figure2 = figure...
         if ((abs(dopusk(n,4)))-(abs(Otklonenie(n,4))))>=0
             
             set(text41 ,'Foregroundcolor'   ,'b');
-            set(text43 ,'String'            ,'РџРѕРєР°Р·Р°РЅРёСЏ СѓРєР°Р·Р°С‚РµР»СЏ РІ РїСЂРµРґРµР»Р°С… РґРѕРїСѓСЃРєР°',...
+            set(text43 ,'String'            ,'Показания указателя в пределах допуска',...
                 'Foregroundcolor'   ,'b');
             
             
         else
             set(text41 ,'Foregroundcolor'   , 'r');
-            set(text43 ,'String'            , 'РЈРєР°Р·Р°С‚РµР»СЊ С‚СЂРµР±СѓРµС‚ СЂРµРіСѓР»РёСЂРѕРІРєРё РІ СЌС‚РѕР№ С‚РѕС‡РєРµ',...
+            set(text43 ,'String'            , 'Указатель требует регулировки в этой точке',...
                 'Foregroundcolor'  ,'r');
         end
     else
@@ -943,12 +943,12 @@ figure2 = figure...
     %if n~=5
     if ((abs(dopusk(n,5)))-(abs(Otklonenie(n,5))))>=0
         
-        set(text5 ,'String'            ,'РђРІР°СЂРёР№РЅС‹Р№ СЃРёРіРЅР°Р»РёР·Р°С‚РѕСЂ РІ РЅРѕСЂРјРµ',...
+        set(text5 ,'String'            ,'Аварийный сигнализатор в норме',...
             'Foregroundcolor'   ,'b');
         
         
     else
-        set(text5 ,'String'            ,'РђРІР°СЂРёР№РЅС‹Р№ СЃРёРіРЅР°Р»РёР·Р°С‚РѕСЂ РЅРµ СЃРІРµС‚РёС‚СЃСЏ',...
+        set(text5 ,'String'            ,'Аварийный сигнализатор не светится',...
             'Foregroundcolor'  ,'r');
     end
     %  else
@@ -985,7 +985,7 @@ end
 %   'FontName'            ,'Arial',...
 %   'Units'               ,'normalized', ...
 %   'Position'            ,[0.85 0.04 0.1 0.04],...
-%   'String'              ,'Р—Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ',...
+%   'String'              ,'Закрыть окно',...
 %   'callback'            ,['set(gcf,''userdata'',0)']);
 %
 %

@@ -1,4 +1,4 @@
-﻿function k = menu_KD8071(xHeader, varargin)
+function k = menu_KD8071(xHeader, varargin)
  global Color_Menu
 %=========================================================================
 % Check input

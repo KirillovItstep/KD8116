@@ -1,11 +1,11 @@
-п»їfunction  Exit_my(varargin)
-% РІС‹С…РѕРґ
+function  Exit_my(varargin)
+% выход
 global figure1  vid sobj...
        
    timer_off;
       delete(figure1 );
      delete(findobj('tag','figure_vid')); 
-% x=[uint8('@') 1 2 1 0];%РІС‹РєР»СЋС‡РµРЅ РїСЂРёР±РѕСЂ
+% x=[uint8('@') 1 2 1 0];%выключен прибор
 % fwrite(sobj,x);
 
 pause(1.5)

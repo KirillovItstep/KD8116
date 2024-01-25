@@ -1,4 +1,4 @@
-﻿function [Im,Line,S1]=Line_strelka4(A,Ms,Mask_,crop,threshold,thresholdX,Open,N);
+function [Im,Line,S1]=Line_strelka4(A,Ms,Mask_,crop,threshold,thresholdX,Open,N);
 
 
 cropA=crop(N,:);
