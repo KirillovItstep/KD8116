@@ -7,7 +7,7 @@ for k=1:6
         cropA=crop(k,:);
         A=imcrop(fabric,cropA);
         A=im2bw(A,thresholdOSV(k)-0.1);
-        Ms{2,k}=roipoly(A);% рисование маски на вторую отметку%
+        Ms{2,k}=roipoly(A);% СЂРёСЃРѕРІР°РЅРёРµ РјР°СЃРєРё РЅР° РІС‚РѕСЂСѓСЋ РѕС‚РјРµС‚РєСѓ%
         
         
 %     end
