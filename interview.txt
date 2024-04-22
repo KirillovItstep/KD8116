@@ -1,0 +1,125 @@
+//Что такое «лямбда-выражение»? Приведите простой пример его использования.
+interface Operationable {
+    int calculate(int x, int y);
+}
+
+public static void main(String[] args) {
+    Operationable operation = (x, y) -> x + y;     
+    int result = operation.calculate(10, 20);
+    System.out.println(result); //30
+}
+
+//Может ли лямбда-выражение возвращать значение?
+Operationable operation = (int x, int y) -> {       
+    if (y == 0) {
+        return 0;
+    }
+    else {
+        return x / y;
+    }
+};
+
+//Может ли лямбда-выражение передаваться в качестве аргумента метода?
+interface Condition {
+    boolean isAppropriate(int n);
+}
+
+private static int sum(int[] numbers, Condition condition) {
+    int result = 0;
+    for (int i : numbers) {
+        if (condition.isAppropriate(i)) {
+            result += i;
+        }
+    }
+    return result;
+}
+
+public static void main(String[] args) {
+    System.out.println(sum(new int[] {0, 1, 0, 3, 0, 5, 0, 7, 0, 9}, (n) -> n != 0));
+}
+
+//К каким переменным есть доступ у лямбда-выражений?
+неизменяемые (effectively final - не обязательно помеченные как final) локальные переменные;
+поля класса;
+статические переменные.
+
+//Отсортировать список строк с помощью лямбда-выражения?
+public static List<String> sort(List<String> list){
+    Collections.sort(list, (a, b) -> a.compareTo(b));
+    return list;
+}
+
+//Что такое «ссылка на метод»? (method reference)
+имя_класса::имя_статического_метода для статического метода;
+объект_класса::имя_метода для метода экземпляра;
+название_класса::new для конструктора.
+
+//Что такое «функциональные интерфейсы»?
+//Для чего используются функциональные интерфейсы Function<T,R>, DoubleFunction<R>, IntFunction<R> и LongFunction<R>?
+//Для чего нужны функциональные интерфейсы UnaryOperator<T>, DoubleUnaryOperator, IntUnaryOperator и LongUnaryOperator?
+//Для чего нужны функциональные интерфейсы BinaryOperator<T>, DoubleBinaryOperator, IntBinaryOperator и LongBinaryOperator?
+//Для чего нужны функциональные интерфейсы Predicate<T>, DoublePredicate, IntPredicate и LongPredicate?
+//Для чего нужны функциональные интерфейсы Consumer<T>, DoubleConsumer, IntConsumer и LongConsumer?
+//Для чего нужны функциональные интерфейсы Supplier<T>, BooleanSupplier, DoubleSupplier, IntSupplier и LongSupplier?
+//Для чего нужен функциональный интерфейс BiConsumer<T,U>?
+//Для чего нужен функциональный интерфейс BiFunction<T,U,R>?
+//Для чего нужен функциональный интерфейс BiPredicate<T,U>?
+//Для чего нужны функциональные интерфейсы вида _To_Function (DoubleToIntFunction,DoubleToLongFunction,IntToDoubleFunction,IntToLongFunction,LongToDoubleFunction,LongToIntFunction)
+//Для чего нужны функциональные интерфейсы ToDoubleBiFunction<T,U>, ToIntBiFunction<T,U> и ToLongBiFunction<T,U>?
+//Для чего нужны функциональные интерфейсы ToDoubleFunction<T>, ToIntFunction<T> и ToLongFunction<T>?
+//Для чего нужны функциональные интерфейсы ObjDoubleConsumer<T>, ObjIntConsumer<T> и ObjLongConsumer<T>?
+
+//Что такое default методы интрефейса?
+interface Example {
+    int process(int a);
+    default void show() {
+        System.out.println("default show()");
+    }
+}
+
+//Как вызывать default метод интерфейса в реализующем этот интерфейс классе?
+interface Paper {
+    default void show() {
+        System.out.println("default show()");
+    }
+}
+
+class Licence implements Paper {
+    public void show() {
+        Paper.super.show();
+    }
+}
+
+//Что такое static метод интерфейса? Как вызывать static метод интерфейса?
+interface Paper {
+    static void show() {
+        System.out.println("static show()");
+    }
+}
+
+class Licence {
+    public void showPaper() {
+        Paper.show();
+    }
+}
+
+//Что такое Optional?
+Optional<String> optional = Optional.of("hello");
+
+optional.isPresent(); // true
+optional.ifPresent(s -> System.out.println(s.length())); // 5
+optional.get(); // "hello"
+optional.orElse("ops..."); // "hello"
+
+//Что такое Stream? Какими бывают операции над стримами (intermediate, terminal).
+
+//Можно ли стрим вызвать повторно?
+
+//В чем разница между Collection и Stream?
+
+
+
+
+
+
+
