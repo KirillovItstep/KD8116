@@ -1,0 +1,21 @@
+Что такое JCF (Java Collection Framework)? Что такое коллекция. Приведите примеры.
+
+Какую роль играют интерфейсы Collection и Map в JCF? Почему Map — это не Collection?
+
+List(ArrayList, LinkedList, Vector, Stack)
+
+Set(HashSet, LinkedHashSet, TreeSet)
+
+Queue(PriorityQueue, ArrayDeque)
+
+Map(Hashtable,LinkedHashMap,TreeMap,WeakHashMap)
+
+Что такое FIFO, First-In-First-Out («первым пришел-первым ушел»)
+
+Что такое LIFO (или FILO), First-In-Last-Out («первым пришел, последним ушел») 
+
+Чем отличается ArrayList от Vector?
+
+Чем отличается ArrayList от LinkedList? Что работает быстрее - ArrayList или LinkedList?
+
+В чем отличия TreeSet и HashSet?
