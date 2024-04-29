@@ -19,3 +19,56 @@ Map(Hashtable,LinkedHashMap,TreeMap,WeakHashMap)
 Чем отличается ArrayList от LinkedList? Что работает быстрее - ArrayList или LinkedList?
 
 В чем отличия TreeSet и HashSet?
+
+create table mails(mail text);
+insert into mails values('a@gmail.com');
+insert into mails values('b@gmail.com');
+insert into mails values('c@gmail.com');
+
+--Добавить столбец
+ALTER TABLE mails drop id;
+--Удалить столбец
+ALTER TABLE mails drop id;
+--Добавить первичный ключ
+ALTER TABLE mails ADD id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT;
+--не может добавить первичный ключ
+--Скопировать таблицу во временную таблицу
+CREATE TABLE temp AS SELECT * FROM mails;
+--Удалить временную таблицу
+drop table temp;
+--Создать пустую временную таблицу, но с первичным ключом
+create table temp(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, mail text);
+--Скопировать столбец из таблицы mails в temp
+INSERT INTO temp(mail) SELECT mail FROM mails;
+--Удалить таблицу mails
+drop table mails;
+--Переименовать таблицу temp
+ALTER TABLE temp RENAME TO mails;
+--Создать таблицу с телефонами
+create table phones(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, phone text);
+--Добавить телефоны
+INSERT INTO phones (phone) VALUES (+3751234), (+3752234), (+3753234);
+--Привязать mail к номеру телефона (один-к-одному)
+create table mails_phones (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, mail_id int, phone_id int);
+INSERT INTO mails_phones (mail_id, phone_id) VALUES (1,1), (2,2), (3,3);
+--Вывести таблицу, где рядом с mail будет номер телефона
+select mails.mail, phones.phone from mails, phones, mails_phones where mails_phones.mail_id=mails.id and mails_phones.phone_id=phones.id;
+
+--Создать таблицу users (у одного пользователя может быть несколько email, phones). Связь один-ко-многим
+create table users_info(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, mails_phones_id int);
+INSERT INTO users_info (mails_phones_id) VALUES (1), (1), (2);
+create table users(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name text, users_info_id);
+INSERT INTO users (name, users_info_id) VALUES ('user1',1), ('user2',2), ('user3',0);
+--Проверить, что в таблицах
+select * from users;
+select * from users_info;
+
+--Вывести имена пользователей, email, телефона
+select users.name, mails.mail, phones.phone from users, users_info, mails, phones, mails_phones 
+where users.users_info_id==users_info.id and users_info.mails_phones_id==mails_phones.id and mails_phones.mail_id=mails.id and mails_phones.phone_id=phones.id;
+
+--Исправить запись в таблице users
+update users SET users_info_id = 3 WHERE users.id=3;
+--Еще раз вывести имена пользователей, email, телефона
+
+--Добавить нового пользователя с двумя учетными записями
