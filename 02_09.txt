@@ -1,0 +1,86 @@
+Задание.
+На вход D33 подать логическую единицу, при этом напряжение, подаваемое на прибор, составит 48В.
+При управлении блоком питания частота сигнала 10-30кГц.
+Изменяя скважностm сигнала, подобрать напряжение 24В.
+Измерять напряжение на входе D32.
+
+Chip ESP32-D0WD-V3. Встроенного светодиода нет.
+Максимальное напряжение, при котором отключается щиток - 43В (допуск 37-43В).
+Щиток должен быть работоспособен в диапазоне 18..32В.
+Проверка показаний происходит при напряжении 27В.
+
+0	43
+370	32,6
+376	32,1
+380	31,7
+400	30,2
+446	27
+670	18
+Тактовая частота процессора выставлена 80МГц (физически 240МГц).
+
+#include <Arduino.h>
+#include <HardwareSerial.h>
+#include <time.h>
+
+/*
+Управление блоком питания
+Частота сигнала 10-30кГц
+Скважность 38% ->18V, 58%->27V, 100%->45V
+
+Результаты: 0%-0.12V,20%-1.1V, 40%-2.2V, 56%-3V, 60%-3.2V, 80%-4.3V, 100%-5.2V
+*/
+int power = 33;  // Источник питания
+int sensor = 32; // Датчик
+/*
+0	43
+370	32,6
+376	32,1
+380	31,7
+400	30,2
+446	27
+670	18
+*/
+volatile long int period = 500; // Период одного импульса при частоте 20кГц
+volatile long int divisor = 250;
+
+volatile long int counter;                              // Variables used in ISR must be volatile
+volatile boolean flag = false;                          // Уровень сигнала
+hw_timer_t *timer = NULL;                               // Pointer to the timer structure
+portMUX_TYPE timerMutex = portMUX_INITIALIZER_UNLOCKED; // Mutex
+struct tm timeinfo;
+
+// Interrupt function
+void IRAM_ATTR onTimer()
+{
+  portENTER_CRITICAL_ISR(&timerMutex);
+  counter++;
+  if (counter % divisor == 0 && !flag)
+  {
+    digitalWrite(power, HIGH);
+    flag = true;
+  }
+  else if (counter % period == 0 && flag)
+  {
+    digitalWrite(power, LOW);
+    counter = 0;
+    flag = false;
+  }
+  portEXIT_CRITICAL_ISR(&timerMutex);
+}
+
+void setup()
+{
+  Serial.begin(115200);
+  pinMode(power, OUTPUT);
+
+  timer = timerBegin(0, 8, true); // timer 0, prescaller 8 (0,1mcs), UP counting
+  timerAttachInterrupt(timer, &onTimer, true);
+  timerAlarmWrite(timer, 1, true); // delay is 0,1ms
+  timerAlarmEnable(timer);
+}
+
+void loop()
+{
+}
+
+
